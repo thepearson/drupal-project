@@ -54,8 +54,19 @@ cp .env.example .env
 Al that's needed for development is to set the `PROJECT_NAME` variable.
 Do this in the `.env` file.
 
-### Start the development environment
+### Step 3: Start the development environment
 
 ```
 docker-compose up -d
 ```
+
+
+### Step 4: Install Drupal
+
+```
+docker exec -it [PROJECT_NAME]-apache vendor/bin/drush -y site:install --site-name="My site name" --account-name=admin --account-pass="a complex password"
+```
+
+### Step 5: All done.
+
+Now you can add the project to VCS. Go to [http://localhost:8080](http://localhost:8080) to see your new site.
