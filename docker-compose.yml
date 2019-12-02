@@ -7,7 +7,7 @@ services:
       - "${DEV_DOCKER_PORTPREFIX}25:8025"
   mariadb:
     image: mariadb:10.3
-    container_name: ${MYSQL_PASSWORD}-mariadb
+    container_name: ${PROJECT_NAME}-mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${PROJECT_NAME}
