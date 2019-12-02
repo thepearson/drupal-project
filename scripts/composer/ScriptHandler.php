@@ -46,6 +46,29 @@ class ScriptHandler {
           'required' => TRUE,
         ],
       ];
+      /*
+      'database' => getenv('MYSQL_DATABASE'),
+      'driver' => 'mysql',
+      'host' => getenv('MYSQL_HOSTNAME'),
+      'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+      'password' => getenv('MYSQL_PASSWORD'),
+      'port' => getenv('MYSQL_PORT'),
+      'prefix' => '',
+      'username' => getenv('MYSQL_USER'),
+      */
+      $settings['databases']['default']['default'] = [
+        'value' => (object) [
+            'database' => "getenv('MYSQL_DATABASE')",
+            'driver' => 'mysql',
+            'host' => "getenv('MYSQL_HOSTNAME')",
+            'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+            'password' => "getenv('MYSQL_DATABASE')",
+            'port' => "getenv('MYSQL_PORT')",
+            'prefix' => "getenv('MYSQL_DATABASE')",
+            'username' => "getenv('MYSQL_USER')",
+        ],
+        'required' => true
+      ];
       drupal_rewrite_settings($settings, $drupalRoot . '/sites/default/settings.php');
       $fs->chmod($drupalRoot . '/sites/default/settings.php', 0666);
       $event->getIO()->write("Created a sites/default/settings.php file with chmod 0666");
