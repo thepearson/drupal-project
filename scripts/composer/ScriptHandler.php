@@ -56,7 +56,7 @@ class ScriptHandler {
       'prefix' => '',
       'username' => getenv('MYSQL_USER'),
       */
-      $settings['databases']['default']['default'] = [
+      $settings['databases']['default']['default'] = (object) [
         'value' => (object) [
             'database' => "getenv('MYSQL_DATABASE')",
             'driver' => 'mysql',
