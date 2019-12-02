@@ -1,3 +1,10 @@
+
+```'
+docker run --rm -it --volume ${COMPOSER_HOME:-$HOME/.composer}:/tmp --volume $(pwd):/app prooph/composer:7.3 \ 
+  create-project --repository="{\"url\": \"git@github.com:thepearson/drupal-project.git\", \"type\": \"vcs\"}" \
+  --stability=dev --remove-vcs thepearson/drupal-project:8.x-dev site-folder
+```  
+
 # Composer template for Drupal projects
 
 [![Build Status](https://travis-ci.org/drupal-composer/drupal-project.svg?branch=8.x)](https://travis-ci.org/drupal-composer/drupal-project)

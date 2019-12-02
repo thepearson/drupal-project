@@ -36,8 +36,8 @@ class ScriptHandler {
     }
 
     // Prepare the settings file for installation
-    if (!$fs->exists($drupalRoot . '/sites/default/settings.php') && $fs->exists($drupalRoot . '../files/settings.php')) {
-      $fs->copy($drupalRoot . '../files/settings.php', $drupalRoot . '/sites/default/settings.php');
+    if (!$fs->exists($drupalRoot . '/sites/default/settings.php') && $fs->exists('files/settings.php')) {
+      $fs->copy('files/settings.php', $drupalRoot . '/sites/default/settings.php');
       require_once $drupalRoot . '/core/includes/bootstrap.inc';
       require_once $drupalRoot . '/core/includes/install.inc';
       $fs->chmod($drupalRoot . '/sites/default/settings.php', 0666);
