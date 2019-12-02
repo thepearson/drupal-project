@@ -2,27 +2,27 @@ version: "3.1"
 services:
   mailhog:
     image: mailhog/mailhog:latest
-    container_name: ${DOCKER_PROJECT}-mailhog
+    container_name: ${PROJECT_NAME}-mailhog
     ports:
-      - "${DOCKER_PORTPREFIX}25:8025"
+      - "${DEV_DOCKER_PORTPREFIX}25:8025"
   mariadb:
     image: mariadb:10.3
-    container_name: ${DOCKER_PROJECT}-mariadb
+    container_name: ${MYSQL_PASSWORD}-mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_DATABASE=${PROJECT_NAME}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
-      - "${DOCKER_PORTPREFIX}06:3306"
+      - "${DEV_DOCKER_PORTPREFIX}06:3306"
   web:
     build: phpdocker/php-apache2
-    container_name: ${DOCKER_PROJECT}-apache
+    container_name: ${PROJECT_NAME}-apache
     volumes:
       - ~/.ssh:/root/.ssh
       - ./phpdocker/php-apache2/php-ini-overrides.ini:/etc/php/7.3/apache2/conf.d/99-overrides.ini
       - .:/var/www/html
     ports:
-      - "${DOCKER_PORTPREFIX}80:80"
+      - "${DEV_DOCKER_PORTPREFIX}80:80"
     environment:
       XDEBUG_CONFIG: remote_host=${XDEBUG_DEV_IP}

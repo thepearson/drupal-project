@@ -90,12 +90,12 @@
  */
 $databases = [];
 $databases['default']['default'] = [
-    'database' => getenv('MYSQL_DATABASE'),
+    'database' => getenv('MYSQL_DATABASE') ?: getenv('PROJECT_NAME'),
     'driver' => 'mysql',
-    'host' => getenv('MYSQL_HOSTNAME'),
+    'host' => getenv('MYSQL_HOSTNAME') ?: getenv('PROJECT_NAME') . '-mariadb',
     'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
     'password' => getenv('MYSQL_PASSWORD'),
-    'port' => getenv('MYSQL_PORT'),
+    'port' => getenv('MYSQL_PORT') ?: 3306,
     'prefix' => '',
     'username' => getenv('MYSQL_USER'),
 ];
